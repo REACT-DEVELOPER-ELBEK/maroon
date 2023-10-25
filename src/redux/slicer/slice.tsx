@@ -4,7 +4,7 @@ import axios from "axios";
 
 export interface CounterState {
   loading: boolean;
-  data: [] | null;
+  data: [] ;
   error: string | null;
 }
 

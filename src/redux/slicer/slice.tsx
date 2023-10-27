@@ -15,7 +15,7 @@ const initialState: CounterState = {
 };
 
 export const fetchProducts = createAsyncThunk("products", async () => {
-  return (axios("https://api.escuelajs.co/api/v1/products")
+  return (axios("http://localhost:3000/cosmetics")
     .then((response) => response.data))
 });
 
@@ -26,13 +26,16 @@ export const fetchProducts = createAsyncThunk("products", async () => {
   extraReducers(builder) {
     builder.addCase(fetchProducts.pending, (state) => {
       state.loading = true;
+      state.data = []
     })
     .addCase(fetchProducts.fulfilled, (state, action) => {
       state.loading = false;
+      state.error = ''
       state.data = action.payload;
     })
     .addCase(fetchProducts.rejected, (state, action:PayloadAction<any>) => {
       state.loading = false;
+      state.data = []
       state.error = action.payload;
     })
   },
